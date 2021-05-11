@@ -3,9 +3,9 @@ package com.lbuglio.cursomc.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.lbuglio.cursomc.domain.Category;
+import com.lbuglio.cursomc.domain.Cidade;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer>{
+public interface CidadeRepository extends JpaRepository<Cidade, Integer>{
 
 }

@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lbuglio.cursomc.domain.Category;
-import com.lbuglio.cursomc.services.CategoryService;
+import com.lbuglio.cursomc.domain.Categoria;
+import com.lbuglio.cursomc.services.CategoriaService;
 
 @RestController
 @RequestMapping(value="/categories")
-public class CategoryResource {
+public class CategoriaResource {
 	
 	@Autowired
-	private CategoryService service;
+	private CategoriaService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Category obj = service.search(id);
+		Categoria obj = service.search(id);
 		
 		return ResponseEntity.ok().body(obj);
 	}

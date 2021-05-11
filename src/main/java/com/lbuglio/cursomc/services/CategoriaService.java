@@ -5,20 +5,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lbuglio.cursomc.domain.Category;
-import com.lbuglio.cursomc.repositories.CategoryRepository;
+import com.lbuglio.cursomc.domain.Categoria;
+import com.lbuglio.cursomc.repositories.CategoriaRepository;
 import com.lbuglio.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class CategoryService {
+public class CategoriaService {
 	
 	@Autowired
-	private CategoryRepository repo;
+	private CategoriaRepository repo;
 
-	public Category search(Integer id) {
-		Optional<Category> obj = repo.findById(id);
+	public Categoria search(Integer id) {
+		Optional<Categoria> obj = repo.findById(id);
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Object not found! Id: " + id + ", Type: " + Category.class.getName()));
+				"Objeto nao encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
 }

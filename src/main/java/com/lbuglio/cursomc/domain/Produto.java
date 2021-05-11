@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-public class Product implements Serializable {
+public class Produto implements Serializable {
 	/**
 	 * 
 	 */
@@ -24,23 +24,23 @@ public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
-	private Double price;
+	private String nome;
+	private Double preco;
 
 	@JsonBackReference
 	@ManyToMany
-	@JoinTable(name = "PRODUCT_CATEGORY", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-	private List<Category> categories = new ArrayList<Category>();
+	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	private List<Categoria> categorias = new ArrayList<Categoria>();
 
-	public Product() {
+	public Produto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Product(Integer id, String name, Double price) {
+	public Produto(Integer id, String nome, Double preco) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.price = price;
+		this.nome = nome;
+		this.preco = preco;
 	}
 
 	public Integer getId() {
@@ -51,28 +51,28 @@ public class Product implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Double getPreco() {
+		return preco;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setPreco(Double preco) {
+		this.preco = preco;
 	}
 
-	public List<Category> getCategories() {
-		return categories;
+	public List<Categoria> getCategorias() {
+		return categorias;
 	}
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class Product implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		Produto other = (Produto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

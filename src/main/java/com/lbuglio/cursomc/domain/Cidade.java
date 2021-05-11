@@ -1,17 +1,16 @@
 package com.lbuglio.cursomc.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class State implements Serializable {
+public class Cidade implements Serializable {
 	/**
 	 * 
 	 */
@@ -20,19 +19,21 @@ public class State implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
+	private String nome;
 
-	@OneToMany(mappedBy = "state")
-	private List<City> cities = new ArrayList<City>();
+	@ManyToOne
+	@JoinColumn(name = "estado_id")
+	private Estado estado;
 
-	public State() {
+	public Cidade() {
 
 	}
 
-	public State(Integer id, String name) {
+	public Cidade(Integer id, String nome, Estado estado) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.nome = nome;
+		this.estado = estado;
 	}
 
 	public Integer getId() {
@@ -43,20 +44,20 @@ public class State implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public List<City> getCities() {
-		return cities;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setCities(List<City> cities) {
-		this.cities = cities;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	@Override
@@ -75,7 +76,7 @@ public class State implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		State other = (State) obj;
+		Cidade other = (Cidade) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

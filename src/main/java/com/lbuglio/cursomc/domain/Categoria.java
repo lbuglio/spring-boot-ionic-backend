@@ -1,39 +1,42 @@
 package com.lbuglio.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class City implements Serializable {
+public class Categoria implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
-
-	@ManyToOne
-	@JoinColumn(name = "state_id")
-	private State state;
-
-	public City() {
-
+	private String nome;
+	
+	@JsonManagedReference
+	@ManyToMany(mappedBy = "categorias")
+	private List<Produto> produtos = new ArrayList<Produto>();
+	
+	public Categoria() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public City(Integer id, String name, State state) {
+	public Categoria(Integer id, String nome) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.state = state;
+		this.nome = nome;
 	}
 
 	public Integer getId() {
@@ -44,22 +47,22 @@ public class City implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public State getState() {
-		return state;
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
-
-	public void setState(State state) {
-		this.state = state;
+	
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,7 +79,7 @@ public class City implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		City other = (City) obj;
+		Categoria other = (Categoria) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -84,5 +87,4 @@ public class City implements Serializable {
 			return false;
 		return true;
 	}
-
 }
