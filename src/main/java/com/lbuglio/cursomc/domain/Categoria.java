@@ -27,7 +27,7 @@ public class Categoria implements Serializable {
 	
 	@JsonManagedReference
 	@ManyToMany(mappedBy = "categorias")
-	private List<Produto> produtos = new ArrayList<Produto>();
+	private List<Produto> produtos = new ArrayList<>();
 	
 	public Categoria() {
 		// TODO Auto-generated constructor stub
