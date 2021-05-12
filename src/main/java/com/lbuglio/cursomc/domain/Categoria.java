@@ -30,7 +30,7 @@ public class Categoria implements Serializable {
 	private List<Produto> produtos = new ArrayList<>();
 	
 	public Categoria() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Categoria(Integer id, String nome) {
