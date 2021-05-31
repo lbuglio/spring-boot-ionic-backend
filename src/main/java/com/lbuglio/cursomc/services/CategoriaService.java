@@ -3,10 +3,12 @@ package com.lbuglio.cursomc.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.lbuglio.cursomc.domain.Categoria;
 import com.lbuglio.cursomc.repositories.CategoriaRepository;
+import com.lbuglio.cursomc.services.exceptions.DataIntegrityException;
 import com.lbuglio.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -31,5 +33,15 @@ public class CategoriaService {
 		find(obj.getId());
 		
 		return repo.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		
+		try {
+			repo.deleteById(id);			
+		} catch (DataIntegrityViolationException ex) {
+			throw new DataIntegrityException("Categoria possui produtos, impossivel excluir!");
+		}
 	}
 }
